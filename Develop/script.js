@@ -13,11 +13,6 @@ var lowerCaseArray = lowerCase.split('');
 var upperCase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 var upperCaseArray = upperCase.split('');
 
-console.log(lowerCaseArray);
-console.log(upperCaseArray);
-console.log(specialArray);
-console.log(numbersArray);
-
 
 // Write password to the #password input
 function writePassword() {
@@ -35,92 +30,99 @@ generateBtn.addEventListener("click", writePassword);
 
 function generatePassword() {
 
-  var passwordLengthInput = window.prompt("Enter a number between 8 and 120 for password length");
+  var passwordLengthInput = window.prompt("Enter a number between 8 and 128 for password length");
 
-  if (passwordLengthInput < 8 || passwordLengthInput > 120) {
-    passwordLengthInput = window.prompt("please enter a valid number between 8 and 120");
-  } else {
+  if (passwordLengthInput < 8 || passwordLengthInput > 128) {
+    passwordLengthInput = window.prompt("please enter a number between 8 and 128");
+    if (passwordLengthInput < 8 || passwordLengthInput > 128) {
+      passwordLength = 8;
+      window.alert('no proper number was chosen, using default option');
+    }
+  }else {
     var passwordLength = passwordLengthInput;
   }
 
   var includeUpper = window.confirm("include upper case?");
+  if (includeUpper){
+    window.alert("Upper case will be included");
+  }else{
+    window.alert("Upper case declined");
+  }
+  
   var includeLower = window.confirm("include lower case?");
+  if (includeLower){
+    window.alert("Lower case will be included");
+  }else{
+    window.alert("Lower case declined");
+  }
+
   var includeNumbers = window.confirm("Include numbers?");
+  if (includeNumbers){
+    window.alert("Numbers will be included");
+  }else{
+    window.alert("Numbers declined");
+  }
+
   var includeSpecial = window.confirm("include special characters?");
+  if (includeSpecial){
+    window.alert("Special characters will be included");
+  }else{
+    window.alert("Special characters declined");
+  }
 
   var passwordOutput = '';
 
   if (includeLower && includeUpper && includeNumbers && includeSpecial) {
 
     var characterArray = lowerCaseArray.concat(upperCaseArray, numbersArray, specialArray);
-    console.log(characterArray);
 
     for (i=0; i < passwordLength; i++){
 
       passwordOutput += characterArray[ Math.floor(Math.random() * characterArray.length) ];
-      console.log(passwordOutput);
-
     }
-    console.log(passwordOutput);
 
   }else if (includeLower && includeUpper && includeNumbers) {
 
     var characterArray = lowerCaseArray.concat(upperCaseArray, numbersArray);
-      console.log(characterArray);
-  
+
       for (i=0; i < passwordLength; i++){
   
         passwordOutput += characterArray[ Math.floor(Math.random() * characterArray.length) ];
-        console.log(passwordOutput);
-  
       }
 
 
   }else if(includeLower && includeUpper && includeSpecial) {
     
     var characterArray = lowerCaseArray.concat(upperCaseArray, specialArray);
-      console.log(characterArray);
-  
+
       for (i=0; i < passwordLength; i++){
   
         passwordOutput += characterArray[ Math.floor(Math.random() * characterArray.length) ];
-        console.log(passwordOutput);
-  
       }
-  }else if(includeLower && includeUpper) {
+  }else if(includeLower && includeUpper){
     var characterArray = lowerCaseArray.concat(upperCaseArray);
-      console.log(characterArray);
-  
+
       for (i=0; i < passwordLength; i++){
   
         passwordOutput += characterArray[ Math.floor(Math.random() * characterArray.length) ];
-        console.log(passwordOutput);
-  
       }
   }else if (includeLower && includeNumbers){
     var characterArray = lowerCaseArray.concat(numbersArray);
-      console.log(characterArray);
-  
+
       for (i=0; i < passwordLength; i++){
   
-        passwordOutput += characterArray[ Math.floor(Math.random() * characterArray.length) ];
-        console.log(passwordOutput);
-  
+        passwordOutput += characterArray[ Math.floor(Math.random() * characterArray.length) ]; 
       }
-  } else if(includeLower && includeSpecial){
+  }else if(includeLower && includeSpecial){
     var characterArray = lowerCaseArray.concat(specialArray);
-      console.log(characterArray);
-  
+
       for (i=0; i < passwordLength; i++){
   
-        passwordOutput += characterArray[ Math.floor(Math.random() * characterArray.length) ];
-        console.log(passwordOutput);
-  
+        passwordOutput += characterArray[ Math.floor(Math.random() * characterArray.length) ]; 
       }
   }else if(includeUpper && includeNumbers){
     var characterArray = upperCaseArray.concat(numbersArray);
-      console.log(characterArray);
-  
+
       for (i=0; i < passwordLength; i++){
   
         passwordOutput += characterArray[ Math.floor(Math.random() * characterArray.length) ];
@@ -129,66 +131,54 @@ function generatePassword() {
       }
   }else if (includeUpper && includeSpecial){
     var characterArray = upperCaseArray.concat(specialArray);
-      console.log(characterArray);
-  
+ 
       for (i=0; i < passwordLength; i++){
   
         passwordOutput += characterArray[ Math.floor(Math.random() * characterArray.length) ];
-        console.log(passwordOutput);
-  
       }
   }else if (includeNumbers && includeSpecial){
     var characterArray = numbersArray.concat(specialArray);
-      console.log(characterArray);
   
       for (i=0; i < passwordLength; i++){
   
         passwordOutput += characterArray[ Math.floor(Math.random() * characterArray.length) ];
-        console.log(passwordOutput);
-  
       }
   }else if (includeLower){
     var characterArray = lowerCaseArray;
-      console.log(characterArray);
-  
+
       for (i=0; i < passwordLength; i++){
   
         passwordOutput += characterArray[ Math.floor(Math.random() * characterArray.length) ];
-        console.log(passwordOutput);
-  
       }
   }else if (includeUpper){
     var characterArray = upperCaseArray;
-      console.log(characterArray);
-  
+
       for (i=0; i < passwordLength; i++){
   
         passwordOutput += characterArray[ Math.floor(Math.random() * characterArray.length) ];
-        console.log(passwordOutput);
-  
       }
   }else if(includeNumbers){
     var characterArray = numbersArray;
-      console.log(characterArray);
-  
+
       for (i=0; i < passwordLength; i++){
   
         passwordOutput += characterArray[ Math.floor(Math.random() * characterArray.length) ];
-        console.log(passwordOutput);
-  
       }
   }else if(includeSpecial){
     var characterArray = specialArray;
-      console.log(characterArray);
+ 
+      for (i=0; i < passwordLength; i++){
   
+        passwordOutput += characterArray[ Math.floor(Math.random() * characterArray.length) ]; 
+      }
+  }else {
+    window.alert("No parameters selected, using default option");
+    var characterArray = lowerCaseArray;
+
       for (i=0; i < passwordLength; i++){
   
         passwordOutput += characterArray[ Math.floor(Math.random() * characterArray.length) ];
-        console.log(passwordOutput);
-  
       }
-  }else {
-    window.confirm8("No parameters selected, please reload the page");
   }
 
 return passwordOutput;
