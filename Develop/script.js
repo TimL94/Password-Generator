@@ -1,7 +1,8 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
-// Created variables for each paramenter as strings than broke each string down by item into appropriate arrays
+
+// arrays are created for each parameter by first creating a string of all values and than splitting the string by individual items into an array
 var numbers = '0123456789';
 var numbersArray = numbers.split('');
 
@@ -28,10 +29,10 @@ function writePassword() {
 generateBtn.addEventListener("click", writePassword);
 
 
-//created generate passwor function
+// generate password function is created
 function generatePassword() {
 
-  // asks user for an input, if no propper input is given by the second prompt the default of 8 is chosen
+  // user is querried for a password length, if no valid length is provided the default of 8 is selected
   var passwordLengthInput = window.prompt("Enter a number between 8 and 128 for password length");
 
   if (passwordLengthInput < 8 || passwordLengthInput > 128) {
@@ -44,15 +45,16 @@ function generatePassword() {
     var passwordLength = passwordLengthInput;
   }
 
-  // asks user to select parameters and displays an alert detailing their choice
-  var includeUpper = window.confirm("include upper case?");
+
+  // User is given four parameters to select or decline, if none are chosen lower case is selected as the default
+  var includeUpper = window.confirm("Include upper case?");
   if (includeUpper){
     window.alert("Upper case will be included");
   }else{
     window.alert("Upper case declined");
   }
-  
-  var includeLower = window.confirm("include lower case?");
+
+  var includeLower = window.confirm("Include lower case?");
   if (includeLower){
     window.alert("Lower case will be included");
   }else{
@@ -66,7 +68,7 @@ function generatePassword() {
     window.alert("Numbers declined");
   }
 
-  var includeSpecial = window.confirm("include special characters?");
+  var includeSpecial = window.confirm("Include special characters?");
   if (includeSpecial){
     window.alert("Special characters will be included");
   }else{
@@ -75,9 +77,8 @@ function generatePassword() {
 
   var passwordOutput = '';
 
-  // includes all possible combinations and concats the appropriate arrays
-  //a for loop is than used to take a random element for each iteration and add it to the end of the string
-  // if no parameters are selected, than lower case is chosen by default
+
+  // series of if-else statements which concat selected parameter arrays and than choose a random element from the new array for each itteration and add it to the password string
   if (includeLower && includeUpper && includeNumbers && includeSpecial) {
 
     var characterArray = lowerCaseArray.concat(upperCaseArray, numbersArray, specialArray);
@@ -96,6 +97,7 @@ function generatePassword() {
         passwordOutput += characterArray[ Math.floor(Math.random() * characterArray.length) ];
       }
 
+
   }else if(includeLower && includeUpper && includeSpecial) {
     
     var characterArray = lowerCaseArray.concat(upperCaseArray, specialArray);
@@ -104,22 +106,6 @@ function generatePassword() {
   
         passwordOutput += characterArray[ Math.floor(Math.random() * characterArray.length) ];
       }
-
-  }else if(includeLower && includeNumbers && includeSpecial){
-    var characterArray = lowerCaseArray.concat(numbersArray, specialArray);
-
-    for (i=0; i < passwordLength; i++){
-
-      passwordOutput += characterArray[ Math.floor(Math.random() * characterArray.length) ];
-    }
-  }else if(includeUpper && includeNumbers && includeSpecial){
-    var characterArray = upperCaseArray.concat(numbersArray, specialArray);
-
-      for (i=0; i < passwordLength; i++){
-  
-        passwordOutput += characterArray[ Math.floor(Math.random() * characterArray.length) ];
-      }
-
   }else if(includeLower && includeUpper){
     var characterArray = lowerCaseArray.concat(upperCaseArray);
 
@@ -127,7 +113,6 @@ function generatePassword() {
   
         passwordOutput += characterArray[ Math.floor(Math.random() * characterArray.length) ];
       }
-
   }else if (includeLower && includeNumbers){
     var characterArray = lowerCaseArray.concat(numbersArray);
 
@@ -135,7 +120,6 @@ function generatePassword() {
   
         passwordOutput += characterArray[ Math.floor(Math.random() * characterArray.length) ]; 
       }
-
   }else if(includeLower && includeSpecial){
     var characterArray = lowerCaseArray.concat(specialArray);
 
@@ -143,7 +127,6 @@ function generatePassword() {
   
         passwordOutput += characterArray[ Math.floor(Math.random() * characterArray.length) ]; 
       }
-
   }else if(includeUpper && includeNumbers){
     var characterArray = upperCaseArray.concat(numbersArray);
 
@@ -153,7 +136,6 @@ function generatePassword() {
         console.log(passwordOutput);
   
       }
-
   }else if (includeUpper && includeSpecial){
     var characterArray = upperCaseArray.concat(specialArray);
  
@@ -161,7 +143,6 @@ function generatePassword() {
   
         passwordOutput += characterArray[ Math.floor(Math.random() * characterArray.length) ];
       }
-
   }else if (includeNumbers && includeSpecial){
     var characterArray = numbersArray.concat(specialArray);
   
@@ -169,7 +150,6 @@ function generatePassword() {
   
         passwordOutput += characterArray[ Math.floor(Math.random() * characterArray.length) ];
       }
-
   }else if (includeLower){
     var characterArray = lowerCaseArray;
 
@@ -177,7 +157,6 @@ function generatePassword() {
   
         passwordOutput += characterArray[ Math.floor(Math.random() * characterArray.length) ];
       }
-
   }else if (includeUpper){
     var characterArray = upperCaseArray;
 
@@ -185,7 +164,6 @@ function generatePassword() {
   
         passwordOutput += characterArray[ Math.floor(Math.random() * characterArray.length) ];
       }
-
   }else if(includeNumbers){
     var characterArray = numbersArray;
 
@@ -193,7 +171,6 @@ function generatePassword() {
   
         passwordOutput += characterArray[ Math.floor(Math.random() * characterArray.length) ];
       }
-
   }else if(includeSpecial){
     var characterArray = specialArray;
  
@@ -201,7 +178,6 @@ function generatePassword() {
   
         passwordOutput += characterArray[ Math.floor(Math.random() * characterArray.length) ]; 
       }
-
   }else {
     window.alert("No parameters selected, using default option");
     var characterArray = lowerCaseArray;
