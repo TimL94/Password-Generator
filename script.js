@@ -28,21 +28,37 @@ function writePassword() {
 generateBtn.addEventListener("click", writePassword);
 
 
-//created generate passwor function
+//created generate password function
 function generatePassword() {
 
   // asks user for an input, if no propper input is given by the second prompt the default of 8 is chosen
   var passwordLengthInput = window.prompt("Enter a number between 8 and 128 for password length");
 
-  if (passwordLengthInput < 8 || passwordLengthInput > 128) {
-    passwordLengthInput = window.prompt("please enter a number between 8 and 128");
-    if (passwordLengthInput < 8 || passwordLengthInput > 128) {
-      passwordLength = 8;
-      window.alert('no proper number was chosen, using default option');
+
+  //this section checks the user input to make sure that it is a number before contiuing
+  var verifyPassword = passwordLengthInput.split('');
+  var verifyArray = lowerCaseArray.concat(upperCaseArray, specialArray);
+
+  for(i=0; i < verifyPassword.length; i++){
+    if(verifyArray.includes(verifyPassword[i])){
+      window.alert("input must be a number");
+      return null;
     }
-  }else {
-    var passwordLength = passwordLengthInput;
   }
+
+  if (lowerCaseArray.includes(passwordLengthInput)) {
+    return null;
+  }
+
+  if (passwordLengthInput < 8 || passwordLengthInput > 128) {
+    window.alert("input must be a number between 8 and 128");
+    return null;
+  }else {
+    var passwordLength = passwordLengthInput;    
+  }
+
+
+  
 
   // asks user to select parameters and displays an alert detailing their choice
   var includeUpper = window.confirm("include upper case?");
@@ -76,7 +92,7 @@ function generatePassword() {
   var passwordOutput = '';
 
   // includes all possible combinations and concats the appropriate arrays
-  //a for loop is than used to take a random element for each iteration and add it to the end of the string
+  // a for loop is than used to take a random element for each iteration and add it to the end of the string
   // if no parameters are selected, than lower case is chosen by default
   if (includeLower && includeUpper && includeNumbers && includeSpecial) {
 
@@ -203,13 +219,8 @@ function generatePassword() {
       }
 
   }else {
-    window.alert("No parameters selected, using default option");
-    var characterArray = lowerCaseArray;
-
-      for (i=0; i < passwordLength; i++){
-  
-        passwordOutput += characterArray[ Math.floor(Math.random() * characterArray.length) ];
-      }
+    window.alert("No parameters selected, please try again");
+    return null;
   }
 
 return passwordOutput;
