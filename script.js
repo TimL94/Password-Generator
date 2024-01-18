@@ -36,11 +36,11 @@ function generatePassword() {
 
 
   //this section checks the user input to make sure that it is a number before contiuing
-  var verifyPassword = passwordLengthInput.split('');
+  var verifyPasswordLengthInput = passwordLengthInput.split('');
   var verifyArray = lowerCaseArray.concat(upperCaseArray, specialArray);
 
-  for(i=0; i < verifyPassword.length; i++){
-    if(verifyArray.includes(verifyPassword[i])){
+  for(i=0; i < verifyPasswordLengthInput.length; i++){
+    if(verifyArray.includes(verifyPasswordLengthInput[i])){
       window.alert("input must be a number");
       return null;
     }
